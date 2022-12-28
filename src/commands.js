@@ -27,14 +27,13 @@ export default class Commands {
     }
   }
 
-  static async remove(channel, repo, _private) {
-    try {
-      const result = await Actions.remove(repo, channel.id);
-      return channel.sendMessage(result);
-    } catch (error) {
-      console.error("ERROR:", error);
-      channel.send("Something went wrong. An error has been logged.");
-    }
+  static remove(channel, repo, _private) {
+    return Actions.remove(repo, channel.id)
+      .then((result) => channel.sendMessage(result))
+      .catch((error) => {
+        console.error("ERROR:", error);
+        channel.send("Something went wrong. An error has been logged.");
+      });
   }
 
   static help(channel) {
