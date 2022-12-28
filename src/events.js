@@ -42,7 +42,7 @@ export default class Events {
     const user = data.sender.login;
     const pages = data.pages;
     let message = `⚠️ [**${repo}**] Wiki was updated by ${user}.`;
-    pages.forEach(page => message += `\n**${page.title}:** ${page.action}`);
+    pages.forEach((page) => (message += `\n**${page.title}:** ${page.action}`));
     return message;
   }
 
@@ -172,5 +172,4 @@ export default class Events {
   static ping(data) {
     return null;
   }
-
 }
